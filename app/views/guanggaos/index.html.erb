@@ -2,8 +2,9 @@
 
 <%= form_tag import_guanggaos_path, :multipart => true do %>
   <%= file_field_tag "csv_file", :class => "btn btn-primary btn-xs",style:"float:left" %>
-  <%= submit_tag "导入CSV", :class => "btn btn-primary btn-xs" %>
+  <%= submit_tag "导入csv", :class => "btn btn-warning btn-xs" %>
   <%= link_to "导出xlsx", guanggaos_path(:format => :xlsx), :class => "btn btn-danger btn-xs" %>
+  <%= link_to "导出csv", guanggaos_path(:format => :csv), :class => "btn btn-info btn-xs" %>
 <% end %>
 
 
@@ -38,7 +39,7 @@
       <tr>
         <th>#</th>
         <th>货币</th>
-        <th>关键词</th>
+        <th>关键字</th>
         <th>管理</th>
       </tr>
     </thead>

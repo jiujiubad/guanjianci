@@ -9,6 +9,16 @@ class GuanggaosController < ApplicationController
     respond_to do |format|
       format.html
       format.xlsx
+      format.csv {
+        @guanggaos = @guanggaos.reorder("id ASC")
+        csv_string = CSV.generate do |csv|
+          csv << ["货币", "关键字"]
+          @guanggaos.each do |g|
+            csv << [g.huobi, g.guanjianzi]
+          end
+        end
+        send_data csv_string, :filename => "广告-#{Time.now.to_s(:number)}.csv"
+      }
     end
   end
 
@@ -74,8 +84,10 @@ class GuanggaosController < ApplicationController
         Rails.logger.info("#{row} ----> #{guanggao.errors.full_messages}")
       end
     end
-
-    flash[:notice] = "总共汇入 #{success} 笔，失败 #{failed_records.size} 笔"
+    failed_records.each do |record|
+      flash[:notice] = "总共汇入 #{success} 笔，失败 #{failed_records.size} 笔"
+      flash[:alert] = "#{record[0]} ---> #{record[1].errors.full_messages}"
+    end
     redirect_to guanggaos_path
   end
 
