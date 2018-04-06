@@ -1,7 +1,7 @@
 class GuanggaosController < ApplicationController
 
   def index
-    @guanggaos = Guanggao.all
+    @guanggaos = Guanggao.all.paginate(:page => params[:page], :per_page => 50)
   end
 
   def show
@@ -37,6 +37,11 @@ class GuanggaosController < ApplicationController
   def destroy
     @guanggao = Guanggao.find(params[:id])
     @guanggao.destroy
+    redirect_to guanggaos_path
+  end
+
+  def clean
+    Guanggao.destroy_all
     redirect_to guanggaos_path
   end
 
