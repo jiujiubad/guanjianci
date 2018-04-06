@@ -40,8 +40,12 @@ class GuanggaosController < ApplicationController
     redirect_to guanggaos_path
   end
 
-  def clean
-    Guanggao.destroy_all
+  def gg_update
+    ids = Array(params[:ids]) #当右边的ids为nil时，也能保证输出的是阵列
+    guanggaos = ids.map{ |i| Guanggao.find_by_id(i) }.compact #compace是去除阵列里的nil
+    if params[:commit] == "删除"
+      guanggaos.each{ |e| e.destroy }
+    end
     redirect_to guanggaos_path
   end
 

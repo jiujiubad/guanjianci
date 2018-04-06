@@ -1,29 +1,35 @@
 <h2>广告><%= link_to "返回", root_path %></h2>
 
 <%= link_to('新增广告', new_guanggao_path, class:'btn btn-danger btn-xs') %>
-<%= link_to('全部删除', clean_guanggaos_path, class:'btn btn-danger btn-xs', method: :delete, data:{confirm:'确认全部删除？'}) %>
+<%= link_to('全部删除', gg_update_guanggaos_path, class:'btn btn-danger btn-xs', method: :post, data:{confirm:'确认全部删除？'}) %>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>货币</th>
-      <th>关键词</th>
-      <th>管理</th>
-    </tr>
-  </thead>
-  <% @guanggaos.each do |g| %>
-    <tbody>
+
+<%= form_tag gg_update_guanggaos_path do %>
+  <%= submit_tag "删除", class:'btn btn-danger btn-xs' %>
+  <table class="table table-bordered">
+    <thead>
       <tr>
-        <td><%= link_to(g.huobi) %></td>
-        <td><%= link_to(g.guanjianzi, guanggao_path(g)) %></td>
-        <td>
-          <%= link_to('编辑', edit_guanggao_path(g), class:'btn btn-danger btn-xs') %>
-          <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete) %>
-        </td>
+        <th>#</th>
+        <th>货币</th>
+        <th>关键词</th>
+        <th>管理</th>
       </tr>
-    </tbody>
-  <% end %>
-</table>
+    </thead>
+    <% @guanggaos.each do |g| %>
+      <tbody>
+        <tr>
+          <td><%= check_box_tag "ids[]", g.id, false %></td>
+          <td><%= link_to(g.huobi) %></td>
+          <td><%= link_to(g.guanjianzi, guanggao_path(g)) %></td>
+          <td>
+            <%= link_to('编辑', edit_guanggao_path(g), class:'btn btn-danger btn-xs') %>
+            <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete) %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+<% end %>
 
 <div class="text-center">
   <%= will_paginate @posts %>

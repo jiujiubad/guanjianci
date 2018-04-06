@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :guanggaos do
     collection do
-      delete :clean
+      post :gg_update
     end
   end
 end
