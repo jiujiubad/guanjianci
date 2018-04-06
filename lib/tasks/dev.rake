@@ -20,3 +20,8 @@ namespace :dev do
      end
    end
 end
+
+# rails c
+# 100.times do |i|
+#   Guanggao.create(huobi: "RMB#{i}", guanjianzi: "guan jian zi #{i}")
+# end

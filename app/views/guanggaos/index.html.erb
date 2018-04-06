@@ -1,11 +1,9 @@
 <h2>广告><%= link_to "返回", root_path %></h2>
 
-<%= link_to('新增广告', new_guanggao_path, class:'btn btn-danger btn-xs') %>
-<%= link_to('全部删除', gg_update_guanggaos_path, class:'btn btn-danger btn-xs', method: :post, data:{confirm:'确认全部删除？'}) %>
-
-
 <%= form_tag gg_update_guanggaos_path do %>
   <%= submit_tag "删除", class:'btn btn-danger btn-xs' %>
+  <%= link_to('新增', new_guanggao_path, class:'btn btn-danger btn-xs') %>
+  <%= link_to('全部删除', clean_guanggaos_path, class:'btn btn-danger btn-xs', method: :post, data:{confirm:'确认全部删除？'}) %>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -23,7 +21,7 @@
           <td><%= link_to(g.guanjianzi, guanggao_path(g)) %></td>
           <td>
             <%= link_to('编辑', edit_guanggao_path(g), class:'btn btn-danger btn-xs') %>
-            <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete) %>
+            <!-- <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete) %> -->
           </td>
         </tr>
       </tbody>

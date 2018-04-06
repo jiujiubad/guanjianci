@@ -1,11 +1,11 @@
 class GuanggaosController < ApplicationController
+  before_action :find_guanggao, only: [:show, :edit, :update, :destroy]
 
   def index
-    @guanggaos = Guanggao.all.paginate(:page => params[:page], :per_page => 50)
+    @guanggaos = Guanggao.paginate(:page => params[:page], :per_page => 50)
   end
 
   def show
-    @guanggao = Guanggao.find(params[:id])
   end
 
   def new
@@ -13,7 +13,6 @@ class GuanggaosController < ApplicationController
   end
 
   def edit
-    @guanggao = Guanggao.find(params[:id])
   end
 
   def create
@@ -26,7 +25,6 @@ class GuanggaosController < ApplicationController
   end
 
   def update
-    @guanggao = Guanggao.find(params[:id])
     if @guanggao.update(guanggao_params)
       redirect_to guanggaos_path
     else
@@ -35,7 +33,6 @@ class GuanggaosController < ApplicationController
   end
 
   def destroy
-    @guanggao = Guanggao.find(params[:id])
     @guanggao.destroy
     redirect_to guanggaos_path
   end
@@ -49,7 +46,16 @@ class GuanggaosController < ApplicationController
     redirect_to guanggaos_path
   end
 
+  def clean
+    Guanggao.destroy_all
+    redirect_to guanggaos_path
+  end
+
   private
+
+  def find_guanggao
+    @guanggao = Guanggao.find(params[:id])
+  end
 
   def guanggao_params
     params.require(:guanggao).permit(:huobi, :guanjianzi)

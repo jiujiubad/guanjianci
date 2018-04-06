@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'guanggaos#index'
 
   resources :guanggaos do
     collection do
       post :gg_update
+      post :clean
     end
   end
 end
