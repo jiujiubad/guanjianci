@@ -3,7 +3,7 @@ namespace :dev do
    task :import => :environment do
      success = 0
      failed_records = []
-     CSV.foreach("#{Rails.root}/tmp/guanggao.csv") do |row|
+     CSV.foreach("#{Rails.root}/lib/tasks/guanggao.csv") do |row|
        g = Guanggao.new(
                         :huobi => row[0],
                         :guanjianzi => row[1])
