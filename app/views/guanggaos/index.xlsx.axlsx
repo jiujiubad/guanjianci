@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Buttons") do |sheet|
+  sheet.add_row ["货币", "关键字"]
+  @guanggaos.each do |g|
+    sheet.add_row [g.huobi, g.guanjianzi]
+  end
+end

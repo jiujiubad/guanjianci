@@ -3,7 +3,10 @@
 <%= form_tag import_guanggaos_path, :multipart => true do %>
   <%= file_field_tag "csv_file", :class => "btn btn-primary btn-xs",style:"float:left" %>
   <%= submit_tag "导入CSV", :class => "btn btn-primary btn-xs" %>
+  <%= link_to "导出xlsx", guanggaos_path(:format => :xlsx), :class => "btn btn-danger btn-xs" %>
 <% end %>
+
+
 
 <div style="float:left">
   <%= search_form_for @q do |f| %>
