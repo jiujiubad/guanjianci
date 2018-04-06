@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       post :gg_update
       post :clean
+      post :import
     end
   end
 end

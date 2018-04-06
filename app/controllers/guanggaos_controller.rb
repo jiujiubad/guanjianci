@@ -1,3 +1,4 @@
+require 'csv'
 class GuanggaosController < ApplicationController
   before_action :find_guanggao, only: [:show, :edit, :update, :destroy]
 
@@ -49,6 +50,27 @@ class GuanggaosController < ApplicationController
 
   def clean
     Guanggao.destroy_all
+    redirect_to guanggaos_path
+  end
+
+  def import
+    csv_string = params[:csv_file].read.force_encoding('utf-8')
+    success = 0
+    failed_records = []
+
+    CSV.parse(csv_string) do |row|
+      guanggao = Guanggao.new(
+                               :huobi => row[0],
+                               :guanjianzi => row[1])
+      if guanggao.save
+        success += 1
+      else
+        failed_records << [row, guanggao]
+        Rails.logger.info("#{row} ----> #{guanggao.errors.full_messages}")
+      end
+    end
+
+    flash[:notice] = "总共汇入 #{success} 笔，失败 #{failed_records.size} 笔"
     redirect_to guanggaos_path
   end
 
