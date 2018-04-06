@@ -2,7 +2,8 @@ class GuanggaosController < ApplicationController
   before_action :find_guanggao, only: [:show, :edit, :update, :destroy]
 
   def index
-    @guanggaos = Guanggao.paginate(:page => params[:page], :per_page => 50)
+    @q = Guanggao.ransack(params[:q])
+    @guanggaos = @q.result.paginate(:page => params[:page], :per_page => 50)
   end
 
   def show

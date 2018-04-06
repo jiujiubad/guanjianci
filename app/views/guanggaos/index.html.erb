@@ -1,9 +1,30 @@
 <h2>广告><%= link_to "返回", root_path %></h2>
 
+<div style="float:left">
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :huobi_or_guanjianzi_cont %>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<div class="btn-group" style="float:left">
+  <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    排序 <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= sort_link(@q, :huobi, '货币') %></li>
+    <li><%= sort_link(@q, :guanjianzi, '关键字') %></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
 <%= form_tag gg_update_guanggaos_path do %>
-  <%= submit_tag "删除", class:'btn btn-danger btn-xs' %>
-  <%= link_to('新增', new_guanggao_path, class:'btn btn-danger btn-xs') %>
-  <%= link_to('全部删除', clean_guanggaos_path, class:'btn btn-danger btn-xs', method: :post, data:{confirm:'确认全部删除？'}) %>
+  <div class="pull-right">
+    <%= submit_tag "删除", class:'btn btn-danger btn-xs' %>
+    <%= link_to('新增', new_guanggao_path, class:'btn btn-danger btn-xs') %>
+    <%= link_to('全部删除', clean_guanggaos_path, class:'btn btn-danger btn-xs', method: :post, data:{confirm:'确认全部删除？'}) %>
+  </div>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -30,5 +51,5 @@
 <% end %>
 
 <div class="text-center">
-  <%= will_paginate @posts %>
+  <%= will_paginate @guanggaos %>
 </div>
