@@ -7,24 +7,42 @@
   <%= link_to "导出csv", guanggaos_path(:format => :csv), :class => "btn btn-info btn-xs" %>
 <% end %>
 
-
-
 <div style="float:left">
   <%= search_form_for @q do |f| %>
-    <%= f.search_field :huobi_or_guanjianzi_cont %>
+    <%= f.search_field :riqi_or_huobi_or_guanggao_huodongmingcheng_or_guanggaozu_mingcheng_or_guanjianzi_or_pipeileixing_or_kehu_sousuoci_or_zhanxianliang_or_dianjiliang_or_dianjilv_or_meicidianji_chengben_or_huafei_or_qitian_zongxiaoshoue_or_guanggao_chengben_xiaoshoubi_or_touruchanchubi_or_qitian_zongdingdanshu_or_qitian_zongxiaoshouliang_or_qitian_zhuanhualv_or_qitiannei_guanggao_sku_xiaoshouliang_or_qitiannei_qita_sku_xiaoshouliang_or_qitiannei_guanggao_sku_xiaoshoue_or_qitiannei_qita_sku_xiaoshoue_cont %>
     <%= f.submit %>
   <% end %>
 </div>
+
+
 
 <div class="btn-group" style="float:left; margin-top:2px;">
   <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     排序 <span class="caret"></span>
   </button>
   <ul class="dropdown-menu">
-    <li><%= sort_link(@q, :huobi, '货币') %></li>
-    <li><%= sort_link(@q, :guanjianzi, '关键字') %></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
+    <li><%= sort_link(@q, :riqi, '日期') %>
+    <li><%= sort_link(@q, :huobi, '货币') %>
+    <li><%= sort_link(@q, :guanggao_huodongmingcheng, '广告活动名称') %>
+    <li><%= sort_link(@q, :guanggaozu_mingcheng, '广告组名称') %>
+    <li><%= sort_link(@q, :guanjianzi, '关键字') %>
+    <li><%= sort_link(@q, :pipeileixing, '匹配类型') %>
+    <li><%= sort_link(@q, :kehu_sousuoci, '客户搜索词') %>
+    <li><%= sort_link(@q, :zhanxianliang, '展现量') %>
+    <li><%= sort_link(@q, :dianjiliang, '点击量') %>
+    <li><%= sort_link(@q, :dianjilv, '点击率(CTR)') %>
+    <li><%= sort_link(@q, :meicidianji_chengben, '每次点击成本(CPC)') %>
+    <li><%= sort_link(@q, :huafei, '花费') %>
+    <li><%= sort_link(@q, :qitian_zongxiaoshoue, '7天总销售额($)') %>
+    <li><%= sort_link(@q, :guanggao_chengben_xiaoshoubi, '广告成本销售比(ACoS)') %>
+    <li><%= sort_link(@q, :touruchanchubi, '投入产出比(RoAS)') %>
+    <li><%= sort_link(@q, :qitian_zongdingdanshu, '7天总订单数') %>
+    <li><%= sort_link(@q, :qitian_zongxiaoshouliang, '7天总销售量') %>
+    <li><%= sort_link(@q, :qitian_zhuanhualv, '7天转化率') %>
+    <li><%= sort_link(@q, :qitiannei_guanggao_sku_xiaoshouliang, '7天内广告sku销售量') %>
+    <li><%= sort_link(@q, :qitiannei_qita_sku_xiaoshouliang, '7天内其他sku销售量') %>
+    <li><%= sort_link(@q, :qitiannei_guanggao_sku_xiaoshoue, '7天内广告sku销售额($)') %>
+    <li><%= sort_link(@q, :qitiannei_qita_sku_xiaoshoue, '7天内其他sku销售额($)') %>
   </ul>
 </div>
 
@@ -38,8 +56,28 @@
     <thead>
       <tr>
         <th>#</th>
+        <th>日期</th>
         <th>货币</th>
+        <th>广告活动名称</th>
+        <th>广告组名称</th>
         <th>关键字</th>
+        <th>匹配类型</th>
+        <th>客户搜索词</th>
+        <th>展现量</th>
+        <th>点击量</th>
+        <th>点击率(CTR)</th>
+        <th>每次点击成本(CPC)</th>
+        <th>花费</th>
+        <th>7天总销售额($)</th>
+        <th>广告成本销售比(ACoS)</th>
+        <th>投入产出比(RoAS)</th>
+        <th>7天总订单数</th>
+        <th>7天总销售量</th>
+        <th>7天转化率</th>
+        <th>7天内广告sku销售量</th>
+        <th>7天内其他sku销售量</th>
+        <th>7天内广告sku销售额($)</th>
+        <th>7天内其他sku销售额($)</th>
         <th>管理</th>
       </tr>
     </thead>
@@ -47,11 +85,31 @@
       <tbody>
         <tr>
           <td><%= check_box_tag "ids[]", g.id, false %></td>
-          <td><%= link_to(g.huobi) %></td>
-          <td><%= link_to(g.guanjianzi, guanggao_path(g)) %></td>
+          <td><%= g.riqi %></td>
+          <td><%= g.huobi %></td>
+          <td><%= g.guanggao_huodongmingcheng %></td>
+          <td><%= g.guanggaozu_mingcheng %></td>
+          <td><%= g.guanjianzi %></td>
+          <td><%= g.pipeileixing %></td>
+          <td><%= g.kehu_sousuoci %></td>
+          <td><%= g.zhanxianliang %></td>
+          <td><%= g.dianjiliang %></td>
+          <td><%= g.dianjilv %></td>
+          <td><%= g.meicidianji_chengben %></td>
+          <td><%= g.huafei %></td>
+          <td><%= g.qitian_zongxiaoshoue %></td>
+          <td><%= g.guanggao_chengben_xiaoshoubi %></td>
+          <td><%= g.touruchanchubi %></td>
+          <td><%= g.qitian_zongdingdanshu %></td>
+          <td><%= g.qitian_zongxiaoshouliang %></td>
+          <td><%= g.qitian_zhuanhualv %></td>
+          <td><%= g.qitiannei_guanggao_sku_xiaoshouliang %></td>
+          <td><%= g.qitiannei_qita_sku_xiaoshouliang %></td>
+          <td><%= g.qitiannei_guanggao_sku_xiaoshoue %></td>
+          <td><%= g.qitiannei_qita_sku_xiaoshoue %></td>
           <td>
             <%= link_to('编辑', edit_guanggao_path(g), class:'btn btn-info btn-xs') %>
-            <%= link_to('删除', guanggao_path(g), class:'btn btn-warning btn-xs', method: :delete) %>
+            <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete) %>
           </td>
         </tr>
       </tbody>

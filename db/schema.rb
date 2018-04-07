@@ -10,13 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406104452) do
+ActiveRecord::Schema.define(version: 20180406215226) do
 
   create_table "guanggaos", force: :cascade do |t|
     t.string "huobi"
     t.string "guanjianzi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "riqi"
+    t.string "guanggao_huodongmingcheng"
+    t.string "guanggaozu_mingcheng"
+    t.string "pipeileixing"
+    t.string "kehu_sousuoci"
+    t.integer "zhanxianliang"
+    t.integer "dianjiliang"
+    t.float "dianjilv"
+    t.float "meicidianji_chengben"
+    t.float "huafei"
+    t.float "qitian_zongxiaoshoue"
+    t.float "guanggao_chengben_xiaoshoubi"
+    t.float "touruchanchubi"
+    t.integer "qitian_zongdingdanshu"
+    t.integer "qitian_zongxiaoshouliang"
+    t.float "qitian_zhuanhualv"
+    t.integer "qitiannei_guanggao_sku_xiaoshouliang"
+    t.integer "qitiannei_qita_sku_xiaoshouliang"
+    t.float "qitiannei_guanggao_sku_xiaoshoue"
+    t.float "qitiannei_qita_sku_xiaoshoue"
   end
 
 end

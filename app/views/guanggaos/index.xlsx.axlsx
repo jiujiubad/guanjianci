@@ -1,7 +1,53 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Buttons") do |sheet|
-  sheet.add_row ["货币", "关键字"]
+  sheet.add_row [
+    "日期",
+    "货币",
+    "广告活动名称",
+    "广告组名称",
+    "关键字",
+    "匹配类型",
+    "客户搜索词",
+    "展现量",
+    "点击量",
+    "点击率(CTR)",
+    "每次点击成本(CPC)",
+    "花费",
+    "7天总销售额($)",
+    "广告成本销售比(ACoS)",
+    "投入产出比(RoAS)",
+    "7天总订单数",
+    "7天总销售量",
+    "7天转化率",
+    "7天内广告sku销售量",
+    "7天内其他sku销售量",
+    "7天内广告sku销售额($)",
+    "7天内其他sku销售额($)"
+  ]
   @guanggaos.each do |g|
-    sheet.add_row [g.huobi, g.guanjianzi]
+    sheet.add_row [
+      g.riqi,
+      g.huobi,
+      g.guanggao_huodongmingcheng,
+      g.guanggaozu_mingcheng,
+      g.guanjianzi,
+      g.pipeileixing,
+      g.kehu_sousuoci,
+      g.zhanxianliang,
+      g.dianjiliang,
+      g.dianjilv,
+      g.meicidianji_chengben,
+      g.huafei,
+      g.qitian_zongxiaoshoue,
+      g.guanggao_chengben_xiaoshoubi,
+      g.touruchanchubi,
+      g.qitian_zongdingdanshu,
+      g.qitian_zongxiaoshouliang,
+      g.qitian_zhuanhualv,
+      g.qitiannei_guanggao_sku_xiaoshouliang,
+      g.qitiannei_qita_sku_xiaoshouliang,
+      g.qitiannei_guanggao_sku_xiaoshoue,
+      g.qitiannei_qita_sku_xiaoshoue
+    ]
   end
 end

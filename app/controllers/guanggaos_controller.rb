@@ -12,9 +12,55 @@ class GuanggaosController < ApplicationController
       format.csv {
         @guanggaos = @guanggaos.reorder("id ASC")
         csv_string = CSV.generate do |csv|
-          csv << ["货币", "关键字"]
+          csv << [
+            "日期",
+            "货币",
+            "广告活动名称",
+            "广告组名称",
+            "关键字",
+            "匹配类型",
+            "客户搜索词",
+            "展现量",
+            "点击量",
+            "点击率(CTR)",
+            "每次点击成本(CPC)",
+            "花费",
+            "7天总销售额($)",
+            "广告成本销售比(ACoS)",
+            "投入产出比(RoAS)",
+            "7天总订单数",
+            "7天总销售量",
+            "7天转化率",
+            "7天内广告sku销售量",
+            "7天内其他sku销售量",
+            "7天内广告sku销售额($)",
+            "7天内其他sku销售额($)"
+          ]
           @guanggaos.each do |g|
-            csv << [g.huobi, g.guanjianzi]
+            csv << [
+              g.riqi,
+              g.huobi,
+              g.guanggao_huodongmingcheng,
+              g.guanggaozu_mingcheng,
+              g.guanjianzi,
+              g.pipeileixing,
+              g.kehu_sousuoci,
+              g.zhanxianliang,
+              g.dianjiliang,
+              g.dianjilv,
+              g.meicidianji_chengben,
+              g.huafei,
+              g.qitian_zongxiaoshoue,
+              g.guanggao_chengben_xiaoshoubi,
+              g.touruchanchubi,
+              g.qitian_zongdingdanshu,
+              g.qitian_zongxiaoshouliang,
+              g.qitian_zhuanhualv,
+              g.qitiannei_guanggao_sku_xiaoshouliang,
+              g.qitiannei_qita_sku_xiaoshouliang,
+              g.qitiannei_guanggao_sku_xiaoshoue,
+              g.qitiannei_qita_sku_xiaoshoue
+            ]
           end
         end
         send_data csv_string, :filename => "广告-#{Time.now.to_s(:number)}.csv"
@@ -75,8 +121,28 @@ class GuanggaosController < ApplicationController
 
     CSV.parse(csv_string) do |row|
       guanggao = Guanggao.new(
-                               :huobi => row[0],
-                               :guanjianzi => row[1])
+        :riqi =>  Time.parse(row[0]),
+        :huobi => row[1],
+        :guanggao_huodongmingcheng => row[2],
+        :guanggaozu_mingcheng => row[3],
+        :guanjianzi => row[4],
+        :pipeileixing => row[5],
+        :kehu_sousuoci => row[6],
+        :zhanxianliang => row[7],
+        :dianjiliang => row[8],
+        :dianjilv => row[9],
+        :meicidianji_chengben => row[10],
+        :huafei => row[11],
+        :qitian_zongxiaoshoue => row[12],
+        :guanggao_chengben_xiaoshoubi => row[13],
+        :touruchanchubi => row[14],
+        :qitian_zongdingdanshu => row[15],
+        :qitian_zongxiaoshouliang => row[16],
+        :qitian_zhuanhualv => row[17],
+        :qitiannei_guanggao_sku_xiaoshouliang => row[18],
+        :qitiannei_qita_sku_xiaoshouliang => row[19],
+        :qitiannei_guanggao_sku_xiaoshoue => row[20],
+        :qitiannei_qita_sku_xiaoshoue => row[21] )
       if guanggao.save
         success += 1
       else
@@ -98,6 +164,6 @@ class GuanggaosController < ApplicationController
   end
 
   def guanggao_params
-    params.require(:guanggao).permit(:huobi, :guanjianzi)
+    params.require(:guanggao).permit(:riqi, :huobi, :guanggao_huodongmingcheng, :guanggaozu_mingcheng, :guanjianzi, :pipeileixing, :kehu_sousuoci, :zhanxianliang, :dianjiliang, :dianjilv, :meicidianji_chengben, :huafei, :qitian_zongxiaoshoue, :guanggao_chengben_xiaoshoubi, :touruchanchubi, :qitian_zongdingdanshu, :qitian_zongxiaoshouliang, :qitian_zhuanhualv, :qitiannei_guanggao_sku_xiaoshouliang, :qitiannei_qita_sku_xiaoshouliang, :qitiannei_guanggao_sku_xiaoshoue, :qitiannei_qita_sku_xiaoshoue)
   end
 end
