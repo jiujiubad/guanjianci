@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180406215226) do
     t.string "guanjianzi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "riqi"
+    t.datetime "riqi"
     t.string "guanggao_huodongmingcheng"
     t.string "guanggaozu_mingcheng"
     t.string "pipeileixing"

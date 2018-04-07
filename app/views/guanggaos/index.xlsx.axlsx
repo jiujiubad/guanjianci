@@ -24,7 +24,7 @@ wb.add_worksheet(name: "Buttons") do |sheet|
     "7天内广告sku销售额($)",
     "7天内其他sku销售额($)"
   ]
-  @guanggaos.each do |g|
+  Guanggao.all.each do |g|
     sheet.add_row [
       g.riqi,
       g.huobi,

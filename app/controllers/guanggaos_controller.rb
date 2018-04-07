@@ -5,12 +5,12 @@ class GuanggaosController < ApplicationController
 
   def index
     @q = Guanggao.ransack(params[:q])
-    @guanggaos = @q.result.paginate(:page => params[:page], :per_page => 50)
+    @guanggaos = @q.result.paginate(:page => params[:page], :per_page => 50).order("riqi ASC")
     respond_to do |format|
       format.html
       format.xlsx
       format.csv {
-        @guanggaos = @guanggaos.reorder("id ASC")
+        @guanggaos = Guanggao.all.reorder("id ASC")
         csv_string = CSV.generate do |csv|
           csv << [
             "日期",

@@ -9,7 +9,7 @@
 
 <div style="float:left">
   <%= search_form_for @q do |f| %>
-    <%= f.search_field :riqi_or_guanggao_huodongmingcheng_or_guanggaozu_mingcheng_or_pipeileixing_or_kehu_sousuoci_cont %>
+    <%= f.search_field :guanggao_huodongmingcheng_or_guanggaozu_mingcheng_or_pipeileixing_or_kehu_sousuoci_cont %>
     <%= f.submit %>
   <% end %>
 </div>
@@ -53,7 +53,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>#</th>
+        <th>id</th>
         <th>日期</th>
         <th>货币</th>
         <th>广告活动名称</th>
@@ -82,7 +82,8 @@
     <% @guanggaos.each do |g| %>
       <tbody>
         <tr>
-          <td><%= check_box_tag "ids[]", g.id, false %></td>
+          <!-- <td><%= check_box_tag "ids[]", g.id, false %></td>  -->
+          <td><%= g.id %></td>
           <td><%= g.riqi %></td>
           <td><%= g.huobi %></td>
           <td><%= g.guanggao_huodongmingcheng %></td>
@@ -107,7 +108,7 @@
           <td><%= g.qitiannei_qita_sku_xiaoshoue %></td>
           <td>
             <%= link_to('编辑', edit_guanggao_path(g), class:'btn btn-info btn-xs') %>
-            <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete) %>
+            <%= link_to('删除', guanggao_path(g), class:'btn btn-danger btn-xs', method: :delete, data:{confirm:'确认全部删除？'}) %>
           </td>
         </tr>
       </tbody>

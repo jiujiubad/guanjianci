@@ -1,6 +1,6 @@
 class AddMoreDetailToGuanggaos < ActiveRecord::Migration[5.1]
   def change
-    add_column :guanggaos, :riqi, :string
+    add_column :guanggaos, :riqi, :datetime
     add_column :guanggaos, :guanggao_huodongmingcheng, :string
     add_column :guanggaos, :guanggaozu_mingcheng, :string
     add_column :guanggaos, :pipeileixing, :string
